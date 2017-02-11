@@ -7,8 +7,10 @@ qt5webview.py -u https://hckrnews.com/
 qt5webview.py -u https://ventusky.com
 </pre>
 
-Example launcher on XFCE Desktop:
+# Add a desktop icon 
 
+Example launcher on XFCE Desktop:
+<pre>
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -18,3 +20,4 @@ Icon=/usr/share/icons/webapps/hn.png
 Terminal=false
 StartupNotify=false
 Name[en_US]=HNews
+</pre>
