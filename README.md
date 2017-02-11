@@ -1,7 +1,6 @@
 # Run webapps from the desktop
 
-Examples: <br />
-<br />
+Run using:
 <pre>
 qt5webview.py -u https://hckrnews.com/
 qt5webview.py -u https://ventusky.com
