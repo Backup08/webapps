@@ -8,6 +8,8 @@ qt5webview.py -u https://ventusky.com
 qt5webview.py -u https://arstechnica.com --nojavascript
 </pre>
 
+<img src="screenshot.png">
+
 # Add a desktop icon 
 
 Example launcher on XFCE Desktop:
