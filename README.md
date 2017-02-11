@@ -5,6 +5,7 @@ Examples: <br />
 <pre>
 qt5webview.py -u https://hckrnews.com/
 qt5webview.py -u https://ventusky.com
+qt5webview.py -u https://arstechnica.com --nojavascript
 </pre>
 
 # Add a desktop icon 
