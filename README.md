@@ -2,8 +2,10 @@
 
 Examples: <br />
 <br />
+<pre>
 qt5webview.py -u https://hckrnews.com/
 qt5webview.py -u https://ventusky.com
+</pre>
 
 Example launcher on XFCE Desktop:
 
