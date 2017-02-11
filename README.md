@@ -3,14 +3,14 @@
 Display any website as web app using the Qt5.
 <i>Simple: Just the app and title!</i>
 
+<a href="https://youtu.be/nNzR-OiVSf8" target="_blank"> Watch demo</a>
+
 Run using:
 <pre>
 qt5webview.py -u https://hckrnews.com/
 qt5webview.py -u https://ventusky.com
 qt5webview.py -u https://arstechnica.com --nojavascript
 </pre>
-
-<img src="screenshot.png">
 
 # Add a desktop icon 
 
