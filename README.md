@@ -1,5 +1,8 @@
 # Run webapps from the desktop
 
+Display any website as web app using the Qt5.
+No toolbar, navigation bar, bookmarks bar. <i>Just the app and title!</i>
+
 Run using:
 <pre>
 qt5webview.py -u https://hckrnews.com/
