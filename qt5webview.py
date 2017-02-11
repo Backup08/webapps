@@ -58,6 +58,10 @@ parser.add_option("-j", "--nojavascript",
 (options, args) = parser.parse_args()
 print(args)
 
+if len(args) < 1:
+    print('Specify URL with -u ')
+    exit()
+
 url = args[0]
 
 if options.no_js_flag:
