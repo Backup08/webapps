@@ -10,22 +10,25 @@ import sys
 from optparse import OptionParser
 
 
-class MyBrowser(QWebPage):
+class WebPage(QWebPage):
     ''' Settings for the browser.'''
 
     def userAgentForUrl(self, url):
         ''' Returns a User Agent that will be seen by the website. '''
         return "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
 
+    def javaScriptConsoleMessage(self, msg, line, source):
+        print('Console: %s line %d: %s' % (source, line, msg))
+
+
 class Browser(QWebView):
     def __init__(self):
-        # QWebView
         self.view = QWebView.__init__(self)
-        #self.view.setPage(MyBrowser())
+        page = WebPage()
+        self.setPage(page)
         self.setWindowTitle('Loading...')
         self.titleChanged.connect(self.adjustTitle)
-        #super(Browser).connect(self.ui.webView,QtCore.SIGNAL("titleChanged (const QString&)"), self.adjustTitle)
-
+    
     def load(self,url):  
         self.setUrl(QUrl(url)) 
 
@@ -36,9 +39,17 @@ class Browser(QWebView):
         settings = QWebSettings.globalSettings()
         settings.setAttribute(QWebSettings.JavascriptEnabled, False)
 
+    def enableCache(self):
+        settings = QWebSettings.globalSettings()
+        settings.setAttribute(QWebSettings.LocalStorageEnabled, True)
+        settings.setAttribute(QWebSettings.OfflineWebApplicationCacheEnabled, True)
+        settings.enablePersistentStorage('__your_path__')
 
+
+####
 
 nojs = False
+cache_flag = False
 
 parser = OptionParser(usage="usage: %prog [options] filename",
                       version="%prog 1.0")
@@ -55,6 +66,14 @@ parser.add_option("-j", "--nojavascript",
                   default=False,
                   help="Disable Javascript")
 
+
+
+parser.add_option("-c", "--cache",
+                  action="store_true",
+                  dest="cache_flag",
+                  default=False,
+                  help="Enable Caching")
+
 (options, args) = parser.parse_args()
 print(args)
 
@@ -63,17 +82,17 @@ if len(args) < 1:
     exit()
 
 url = args[0]
-
-if options.no_js_flag:
-    nojs = True
-
 app = QApplication(sys.argv) 
-#url = sys.argv[1]
 
 view = Browser()
 view.showMaximized()
 
-if nojs:
+
+if options.cache_flag:
+    view.enableCache()
+
+if options.no_js_flag:
     view.disableJS()
+
 view.load(url)
 app.exec_()

@@ -10,6 +10,7 @@ Run using:
 qt5webview.py -u https://hckrnews.com/
 qt5webview.py -u https://ventusky.com
 qt5webview.py -u https://arstechnica.com --nojavascript
+qt5webview.py -u https://chat.cloudron.io/home -c  (enable caching)
 </pre>
 
 # Add a desktop icon 
