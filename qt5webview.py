@@ -15,7 +15,7 @@ class WebPage(QWebPage):
 
     def userAgentForUrl(self, url):
         ''' Returns a User Agent that will be seen by the website. '''
-        return "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+        return "Mozilla/5.0 (X11; CrOS x86_64 5717.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1918.1 Safari/537.36"
 
     def javaScriptConsoleMessage(self, msg, line, source):
         print('Console: %s line %d: %s' % (source, line, msg))
@@ -48,51 +48,53 @@ class Browser(QWebView):
 
 ####
 
-nojs = False
-cache_flag = False
+def main():
 
-parser = OptionParser(usage="usage: %prog [options] filename",
-                      version="%prog 1.0")
+    parser = OptionParser(usage="usage: %prog [options] filename",
+                          version="%prog 1.0")
 
-parser.add_option("-u", "--url",
-                  action="store_true",
-                  dest="url_flag",
-                  default=False,
-                  help="Website URL")
+    parser.add_option("-u", "--url",
+                      action="store_true",
+                      dest="url_flag",
+                      default=False,
+                      help="Website URL")
 
-parser.add_option("-j", "--nojavascript",
-                  action="store_true",
-                  dest="no_js_flag",
-                  default=False,
-                  help="Disable Javascript")
+    parser.add_option("-j", "--nojavascript",
+                      action="store_true",
+                      dest="no_js_flag",
+                      default=False,
+                      help="Disable Javascript")
+    
+    parser.add_option("-c", "--cache",
+                      action="store_true",
+                      dest="cache_flag",
+                      default=False,
+                      help="Enable Caching")
+    
+    
+    (options, args) = parser.parse_args()
+    print(args)
+    
+    if len(args) < 1:
+        print('Specify URL with -u ')
+        exit()
+    
+    url = args[0]
+    app = QApplication(sys.argv) 
+    
+    view = Browser()
+    view.showMaximized()
+    
+    
+    if options.cache_flag:
+        view.enableCache()
 
+    if options.no_js_flag:
+        view.disableJS()
 
+    view.load(url)
+    app.exec_()
 
-parser.add_option("-c", "--cache",
-                  action="store_true",
-                  dest="cache_flag",
-                  default=False,
-                  help="Enable Caching")
+if __name__ == "__main__":
+    main()
 
-(options, args) = parser.parse_args()
-print(args)
-
-if len(args) < 1:
-    print('Specify URL with -u ')
-    exit()
-
-url = args[0]
-app = QApplication(sys.argv) 
-
-view = Browser()
-view.showMaximized()
-
-
-if options.cache_flag:
-    view.enableCache()
-
-if options.no_js_flag:
-    view.disableJS()
-
-view.load(url)
-app.exec_()
