@@ -28,7 +28,11 @@ class Browser(QWebView):
         self.setPage(page)
         self.setWindowTitle('Loading...')
         self.titleChanged.connect(self.adjustTitle)
-    
+        self.page().featurePermissionRequested.connect(self.permissionRequested)    
+
+    def permissionRequested(self, frame, feature):
+        self.page().setFeaturePermission(frame, feature, QWebPage.PermissionGrantedByUser)
+
     def load(self,url):  
         self.setUrl(QUrl(url)) 
 
