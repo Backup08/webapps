@@ -4,6 +4,7 @@ Display any website as web app using the Qt5.
 <i>Simple: Just the app and title!</i>
 
 <a href="https://youtu.be/nNzR-OiVSf8" target="_blank"> Watch demo</a>
+### Requires python 3.x
 
 Run using:
 <pre>
@@ -36,7 +37,7 @@ sudo apt-get install libqt5webkit5-dev python3-pyqt5.qtsvg python3-pyqt5.qtwebki
 sudo apt install git
 git clone github.com/Maarten08/webapps.git
 cd webapps/
-sudo apt install python3-setuptools
+sudo apt-get install python3-setuptools
 sudo python3 setup.py install
 qt5webview.py -u https://hckrnews.com
 qt5webview.py -u https://evernote.com
